@@ -10,6 +10,9 @@ class BaseStepper extends StatefulWidget {
   /// Each child defines a step. Hence, total number of children determines the total number of steps.
   final List<Widget>? children;
 
+  /// Subtitle widget to appear under each children. Make sure it's the same size as the children.
+  final List<Widget>? subtitles;
+
   /// Whether to enable or disable the next and previous buttons.
   final bool nextPreviousButtonsDisabled;
 
@@ -79,6 +82,7 @@ class BaseStepper extends StatefulWidget {
   /// Creates a basic stepper.
   BaseStepper({
     this.children,
+    this.subtitles,
     this.nextPreviousButtonsDisabled = true,
     this.stepTappingDisabled = true,
     this.previousButtonIcon,
@@ -226,10 +230,10 @@ class _BaseStepperState extends State<BaseStepper> {
                   Column(
                     children: [
                       _customizedIndicator(index),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Text('My Text'),
+                      if (widget.subtitles != null &&
+                          index < widget.subtitles!.length) ...[
+                        widget.subtitles![index],
+                      ]
                     ],
                   ),
                   _customizedDottedLine(index, Axis.horizontal),
