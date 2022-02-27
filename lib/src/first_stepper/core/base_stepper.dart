@@ -166,12 +166,15 @@ class _BaseStepperState extends State<BaseStepper> {
   @override
   Widget build(BuildContext context) {
     // Controls scrolling behavior.
-    if (!widget.scrollingDisabled) WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
+    if (!widget.scrollingDisabled)
+      WidgetsBinding.instance!.addPostFrameCallback(_afterLayout);
 
     return widget.direction == Axis.horizontal
         ? Row(
             children: <Widget>[
-              widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
+              widget.nextPreviousButtonsDisabled
+                  ? _previousButton()
+                  : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
@@ -180,7 +183,9 @@ class _BaseStepperState extends State<BaseStepper> {
           )
         : Column(
             children: <Widget>[
-              widget.nextPreviousButtonsDisabled ? _previousButton() : Container(),
+              widget.nextPreviousButtonsDisabled
+                  ? _previousButton()
+                  : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
@@ -196,11 +201,15 @@ class _BaseStepperState extends State<BaseStepper> {
       child: SingleChildScrollView(
         scrollDirection: widget.direction,
         controller: _scrollController,
-        physics: widget.scrollingDisabled ? NeverScrollableScrollPhysics() : ClampingScrollPhysics(),
+        physics: widget.scrollingDisabled
+            ? NeverScrollableScrollPhysics()
+            : ClampingScrollPhysics(),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
           padding: const EdgeInsets.all(8.0),
-          child: widget.direction == Axis.horizontal ? Row(children: _buildSteps()) : Column(children: _buildSteps()),
+          child: widget.direction == Axis.horizontal
+              ? Row(children: _buildSteps())
+              : Column(children: _buildSteps()),
         ),
       ),
     );
@@ -214,7 +223,15 @@ class _BaseStepperState extends State<BaseStepper> {
         return widget.direction == Axis.horizontal
             ? Row(
                 children: <Widget>[
-                  _customizedIndicator(index),
+                  Column(
+                    children: [
+                      _customizedIndicator(index),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text('My Text'),
+                    ],
+                  ),
                   _customizedDottedLine(index, Axis.horizontal),
                 ],
               )
@@ -277,7 +294,9 @@ class _BaseStepperState extends State<BaseStepper> {
         visualDensity: VisualDensity.compact,
         icon: widget.previousButtonIcon ??
             Icon(
-              widget.direction == Axis.horizontal ? Icons.arrow_left : Icons.arrow_drop_up,
+              widget.direction == Axis.horizontal
+                  ? Icons.arrow_left
+                  : Icons.arrow_drop_up,
             ),
         onPressed: _goToPreviousStep,
       ),
@@ -292,7 +311,9 @@ class _BaseStepperState extends State<BaseStepper> {
         visualDensity: VisualDensity.compact,
         icon: widget.nextButtonIcon ??
             Icon(
-              widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
+              widget.direction == Axis.horizontal
+                  ? Icons.arrow_right
+                  : Icons.arrow_drop_down,
             ),
         onPressed: _goToNextStep,
       ),
@@ -301,7 +322,8 @@ class _BaseStepperState extends State<BaseStepper> {
 
   /// Contains the logic for going to the next step.
   void _goToNextStep() {
-    if (_selectedIndex < widget.children!.length - 1 && widget.steppingEnabled) {
+    if (_selectedIndex < widget.children!.length - 1 &&
+        widget.steppingEnabled) {
       setState(() {
         _selectedIndex++;
 
