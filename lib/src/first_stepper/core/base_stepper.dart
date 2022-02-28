@@ -238,13 +238,10 @@ class _BaseStepperState extends State<BaseStepper> {
                       ]
                     ],
                   ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: (widget.stepRadius / 2) - 1,
-                      ),
-                      _customizedDottedLine(index, Axis.horizontal),
-                    ],
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: (widget.stepRadius / 2.0) - 1),
+                    child: _customizedDottedLine(index, Axis.horizontal),
                   ),
                 ],
               )
