@@ -225,18 +225,19 @@ class _BaseStepperState extends State<BaseStepper> {
       widget.children!.length,
       (index) {
         return widget.direction == Axis.horizontal
-            ? Row(
-                children: <Widget>[
-                  Column(
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
                       _customizedIndicator(index),
-                      if (widget.subtitles != null &&
-                          index < widget.subtitles!.length) ...[
-                        widget.subtitles![index],
-                      ]
+                      _customizedDottedLine(index, Axis.horizontal),
                     ],
                   ),
-                  _customizedDottedLine(index, Axis.horizontal),
+                  if (widget.subtitles != null &&
+                      index < widget.subtitles!.length) ...[
+                    widget.subtitles![index],
+                  ]
                 ],
               )
             : Column(
