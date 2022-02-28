@@ -36,6 +36,9 @@ class NumberStepper extends StatelessWidget {
   /// The amount of padding inside a step.
   final double stepPadding;
 
+  /// Padding for dotted lines
+  final EdgeInsets? dottedLinePadding;
+
   /// The color of a step when it is reached.
   final Color? activeStepColor;
 
@@ -91,6 +94,7 @@ class NumberStepper extends StatelessWidget {
     this.numberStyle = const TextStyle(color: Colors.black),
     this.stepColor,
     this.stepPadding = 0.0,
+    this.dottedLinePadding,
     this.activeStepColor,
     this.activeStepBorderColor,
     this.activeStepBorderWidth = 0.5,

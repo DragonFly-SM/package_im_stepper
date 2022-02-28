@@ -61,6 +61,9 @@ class BaseStepper extends StatefulWidget {
   /// Whether the stepping is enabled or disabled.
   final bool steppingEnabled;
 
+  /// Padding for dotted lines
+  final EdgeInsets dottedLinePadding;
+
   /// Amount of padding on each side of the child widget.
   final double padding;
 
@@ -99,6 +102,7 @@ class BaseStepper extends StatefulWidget {
     this.stepReachedAnimationEffect = Curves.bounceOut,
     this.stepReachedAnimationDuration = const Duration(seconds: 1),
     this.steppingEnabled = true,
+    this.dottedLinePadding = EdgeInsets.zero,
     this.padding = 5.0,
     this.margin = 1.0,
     this.activeStepBorderWidth = 0.5,
@@ -238,17 +242,7 @@ class _BaseStepperState extends State<BaseStepper> {
                       ]
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        height: 11,
-                        color: Colors.red,
-                      ),
-                      _customizedDottedLine(index, Axis.horizontal),
-                    ],
-                  ),
+                  _customizedDottedLine(index, Axis.horizontal),
                 ],
               )
             : Column(
@@ -293,7 +287,7 @@ class _BaseStepperState extends State<BaseStepper> {
   Widget _customizedDottedLine(int index, Axis axis) {
     return index < widget.children!.length - 1
         ? Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: widget.dottedLinePadding,
             child: DottedLine(
               length: widget.lineLength,
               color: widget.lineColor ?? Colors.blue,
