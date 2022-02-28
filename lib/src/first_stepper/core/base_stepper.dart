@@ -239,8 +239,7 @@ class _BaseStepperState extends State<BaseStepper> {
                     ],
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(top: (widget.stepRadius / 2.0) - 1),
+                    padding: EdgeInsets.only(top: 11),
                     child: _customizedDottedLine(index, Axis.horizontal),
                   ),
                 ],
