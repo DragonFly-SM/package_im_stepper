@@ -240,6 +240,7 @@ class _BaseStepperState extends State<BaseStepper> {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         height: 11,
