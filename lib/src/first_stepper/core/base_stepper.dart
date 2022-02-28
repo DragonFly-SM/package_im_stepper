@@ -238,10 +238,11 @@ class _BaseStepperState extends State<BaseStepper> {
                       ]
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 11),
-                    child: _customizedDottedLine(index, Axis.horizontal),
+                  Container(
+                    height: 11,
+                    color: Colors.red,
                   ),
+                  _customizedDottedLine(index, Axis.horizontal),
                 ],
               )
             : Column(
