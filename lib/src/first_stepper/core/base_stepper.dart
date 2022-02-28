@@ -238,11 +238,16 @@ class _BaseStepperState extends State<BaseStepper> {
                       ]
                     ],
                   ),
-                  Container(
-                    height: 11,
-                    color: Colors.red,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 11,
+                        color: Colors.red,
+                      ),
+                      _customizedDottedLine(index, Axis.horizontal),
+                    ],
                   ),
-                  _customizedDottedLine(index, Axis.horizontal),
                 ],
               )
             : Column(
