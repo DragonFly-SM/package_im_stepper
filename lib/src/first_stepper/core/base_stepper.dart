@@ -289,6 +289,7 @@ class _BaseStepperState extends State<BaseStepper> {
     return index < widget.children!.length - 1
         ? Container(
             color: Colors.red,
+            padding: widget.dottedLinePadding,
             child: DottedLine(
               length: widget.lineLength,
               color: widget.lineColor ?? Colors.blue,
