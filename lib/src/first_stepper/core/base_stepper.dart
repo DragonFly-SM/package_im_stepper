@@ -234,14 +234,14 @@ class _BaseStepperState extends State<BaseStepper> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       color: Colors.red,
                       alignment: Alignment.topCenter,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisSize: MainAxisSize.max,
                         children: [
                           _customizedIndicator(index),
                           if (widget.subtitles != null &&
