@@ -287,8 +287,8 @@ class _BaseStepperState extends State<BaseStepper> {
   /// A customized DottedLine.
   Widget _customizedDottedLine(int index, Axis axis) {
     return index < widget.children!.length - 1
-        ? Padding(
-            padding: EdgeInsets.only(top: 11),
+        ? Container(
+            color: Colors.red,
             child: DottedLine(
               length: widget.lineLength,
               color: widget.lineColor ?? Colors.blue,
