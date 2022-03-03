@@ -231,6 +231,7 @@ class _BaseStepperState extends State<BaseStepper> {
         return widget.direction == Axis.horizontal
             ? Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -287,8 +288,7 @@ class _BaseStepperState extends State<BaseStepper> {
   Widget _customizedDottedLine(int index, Axis axis) {
     return index < widget.children!.length - 1
         ? Padding(
-            padding: widget.dottedLinePadding ??
-                EdgeInsets.only(top: (widget.stepRadius / 2) - 1),
+            padding: EdgeInsets.only(top: 11),
             child: DottedLine(
               length: widget.lineLength,
               color: widget.lineColor ?? Colors.blue,
