@@ -231,9 +231,12 @@ class _BaseStepperState extends State<BaseStepper> {
         return widget.direction == Axis.horizontal
             ? Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       _customizedIndicator(index),
                       if (widget.subtitles != null &&
