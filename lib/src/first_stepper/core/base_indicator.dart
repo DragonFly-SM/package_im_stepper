@@ -4,6 +4,9 @@ class BaseIndicator extends StatelessWidget {
   /// Whether this indicator is selected or not.
   final bool isSelected;
 
+  /// Whether this indicator has been previously selected or not.
+  final bool isPreviouslySelected;
+
   /// The child to be placed within the indicator.
   final Widget? child;
 
@@ -15,6 +18,9 @@ class BaseIndicator extends StatelessWidget {
 
   /// Color of this indicator when it is selected.
   final Color? activeColor;
+
+  /// Color of this indicator if it was a previous step.
+  final Color? previousActiveColor;
 
   /// Border color of this indicator when it is selected.
   final Color? activeBorderColor;
@@ -33,10 +39,12 @@ class BaseIndicator extends StatelessWidget {
 
   BaseIndicator({
     this.isSelected = false,
+    this.isPreviouslySelected = false,
     this.child,
     this.onPressed,
     this.color,
     this.activeColor,
+    this.previousActiveColor,
     this.activeBorderColor,
     this.radius = 24.0,
     this.padding = 5.0,
@@ -64,8 +72,11 @@ class BaseIndicator extends StatelessWidget {
           width: radius * 2,
           padding: EdgeInsets.all(padding),
           decoration: BoxDecoration(
-            color:
-                isSelected ? activeColor ?? Colors.green : color ?? Colors.grey,
+            color: isSelected
+                ? activeColor ?? Colors.green
+                : isPreviouslySelected
+                    ? previousActiveColor ?? Colors.blue
+                    : color ?? Colors.grey,
             shape: BoxShape.circle,
           ),
           child: Center(

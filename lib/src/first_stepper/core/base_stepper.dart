@@ -37,11 +37,17 @@ class BaseStepper extends StatefulWidget {
   /// The color of a step when it is reached.
   final Color? activeStepColor;
 
+  /// Color of this indicator if it was a previous step.
+  final Color? previousActiveColor;
+
   /// The border color of a step when it is reached.
   final Color? activeStepBorderColor;
 
   /// The color of the line that separates the steps.
   final Color? lineColor;
+
+  /// Color of activated dotted line.
+  final Color? activeLineColor;
 
   /// The length of the line that separates the steps.
   final double lineLength;
@@ -94,8 +100,10 @@ class BaseStepper extends StatefulWidget {
     this.direction = Axis.horizontal,
     this.stepColor,
     this.activeStepColor,
+    this.previousActiveColor,
     this.activeStepBorderColor,
     this.lineColor,
+    this.activeLineColor,
     this.lineLength = 50.0,
     this.lineDotRadius = 1.0,
     this.stepRadius = 24.0,
@@ -252,8 +260,7 @@ class _BaseStepperState extends State<BaseStepper> {
                           SizedBox(
                             height: widget.stepRadius - 1,
                           ),
-                      Center(
-                          child: _customizedDottedLine(index, Axis.horizontal)),
+                      _customizedDottedLine(index, Axis.horizontal),
                     ],
                   ),
                 ],
@@ -273,6 +280,7 @@ class _BaseStepperState extends State<BaseStepper> {
     return BaseIndicator(
       child: widget.children![index],
       isSelected: _selectedIndex == index,
+      isPreviouslySelected: index < _selectedIndex,
       onPressed: widget.stepTappingDisabled
           ? () {
               if (widget.steppingEnabled) {
@@ -288,6 +296,7 @@ class _BaseStepperState extends State<BaseStepper> {
           : null,
       color: widget.stepColor,
       activeColor: widget.activeStepColor,
+      previousActiveColor: widget.previousActiveColor,
       activeBorderColor: widget.activeStepBorderColor,
       radius: widget.stepRadius,
       padding: widget.padding,
@@ -301,6 +310,8 @@ class _BaseStepperState extends State<BaseStepper> {
     return index < widget.children!.length - 1
         ? DottedLine(
             length: widget.lineLength,
+            isActive: index < _selectedIndex,
+            activeColor: widget.activeLineColor,
             color: widget.lineColor ?? Colors.blue,
             dotRadius: widget.lineDotRadius,
             spacing: 5.0,

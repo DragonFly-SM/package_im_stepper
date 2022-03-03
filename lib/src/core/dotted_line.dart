@@ -4,8 +4,14 @@ class DottedLine extends StatelessWidget {
   /// Width of the dotted line.
   final double length;
 
+  /// If dotted line is active.
+  final bool isActive;
+
   /// Color of the dotted line.
   final Color color;
+
+  /// Color of activate dotted line.
+  final Color? activeColor;
 
   /// Radius of each dot in the dotted line.
   final double dotRadius;
@@ -17,7 +23,9 @@ class DottedLine extends StatelessWidget {
 
   DottedLine({
     this.length = 50.0,
+    this.isActive = false,
     this.color = Colors.grey,
+    this.activeColor,
     this.dotRadius = 2.0,
     this.spacing = 3.0,
     this.axis = Axis.horizontal,
@@ -32,7 +40,8 @@ class DottedLine extends StatelessWidget {
       height: axis == Axis.vertical ? length : 0.0,
       child: CustomPaint(
         painter: _DottedLinePainter(
-          brush: Paint()..color = color,
+          brush: Paint()
+            ..color = isActive ? activeColor ?? Colors.green : color,
           length: length,
           dotRadius: dotRadius,
           spacing: spacing,

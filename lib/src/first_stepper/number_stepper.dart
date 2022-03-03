@@ -42,6 +42,9 @@ class NumberStepper extends StatelessWidget {
   /// The color of a step when it is reached.
   final Color? activeStepColor;
 
+  /// Color of this indicator if it was a previous step.
+  final Color? previousActiveColor;
+
   /// The border color of a step when it is reached.
   final Color? activeStepBorderColor;
 
@@ -53,6 +56,9 @@ class NumberStepper extends StatelessWidget {
 
   /// The color of the line that separates the steps.
   final Color? lineColor;
+
+  /// Color of activated dotted line.
+  final Color? activeLineColor;
 
   /// The length of the line that separates the steps.
   final double lineLength;
@@ -96,10 +102,12 @@ class NumberStepper extends StatelessWidget {
     this.stepPadding = 0.0,
     this.spacing,
     this.activeStepColor,
+    this.previousActiveColor,
     this.activeStepBorderColor,
     this.activeStepBorderWidth = 0.5,
     this.activeStepBorderPadding = 1.0,
     this.lineColor,
+    this.activeLineColor,
     this.lineLength = 50.0,
     this.lineDotRadius = 1.0,
     this.stepRadius = 24.0,
@@ -124,6 +132,7 @@ class NumberStepper extends StatelessWidget {
       direction: direction,
       stepColor: stepColor,
       activeStepColor: activeStepColor,
+      previousActiveColor: previousActiveColor,
       activeStepBorderColor: activeStepBorderColor,
       activeStepBorderWidth: activeStepBorderWidth,
       lineColor: lineColor,
