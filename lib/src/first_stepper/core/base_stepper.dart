@@ -234,25 +234,32 @@ class _BaseStepperState extends State<BaseStepper> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _customizedIndicator(index),
-                      if (widget.subtitles != null &&
-                          index < widget.subtitles!.length) ...[
-                        widget.subtitles![index],
-                      ]
-                    ],
+                  Container(
+                    color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _customizedIndicator(index),
+                        if (widget.subtitles != null &&
+                            index < widget.subtitles!.length) ...[
+                          widget.subtitles![index],
+                        ]
+                      ],
+                    ),
                   ),
-                  Column(
-                    children: [
-                      widget.spacing ??
-                          SizedBox(
-                            height: widget.stepRadius - 1,
-                          ),
-                      _customizedDottedLine(index, Axis.horizontal),
-                    ],
+                  Container(
+                    color: Colors.blue,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        widget.spacing ??
+                            SizedBox(
+                              height: widget.stepRadius - 1,
+                            ),
+                        _customizedDottedLine(index, Axis.horizontal),
+                      ],
+                    ),
                   ),
                 ],
               )
