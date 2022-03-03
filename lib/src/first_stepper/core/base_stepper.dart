@@ -229,39 +229,43 @@ class _BaseStepperState extends State<BaseStepper> {
       widget.children!.length,
       (index) {
         return widget.direction == Axis.horizontal
-            ? Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    color: Colors.red,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _customizedIndicator(index),
-                        if (widget.subtitles != null &&
-                            index < widget.subtitles!.length) ...[
-                          widget.subtitles![index],
-                        ]
-                      ],
+            ? Container(
+                color: Colors.amber,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      color: Colors.red,
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _customizedIndicator(index),
+                          if (widget.subtitles != null &&
+                              index < widget.subtitles!.length) ...[
+                            widget.subtitles![index],
+                          ]
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    color: Colors.blue,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        widget.spacing ??
-                            SizedBox(
-                              height: widget.stepRadius - 1,
-                            ),
-                        _customizedDottedLine(index, Axis.horizontal),
-                      ],
+                    Container(
+                      color: Colors.blue,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          widget.spacing ??
+                              SizedBox(
+                                height: widget.stepRadius - 1,
+                              ),
+                          _customizedDottedLine(index, Axis.horizontal),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             : Column(
                 children: <Widget>[
