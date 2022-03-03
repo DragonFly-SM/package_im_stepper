@@ -62,7 +62,7 @@ class BaseStepper extends StatefulWidget {
   final bool steppingEnabled;
 
   /// Padding for dotted lines
-  final EdgeInsets? dottedLinePadding;
+  final Widget? spacing;
 
   /// Amount of padding on each side of the child widget.
   final double padding;
@@ -102,7 +102,7 @@ class BaseStepper extends StatefulWidget {
     this.stepReachedAnimationEffect = Curves.bounceOut,
     this.stepReachedAnimationDuration = const Duration(seconds: 1),
     this.steppingEnabled = true,
-    this.dottedLinePadding,
+    this.spacing,
     this.padding = 5.0,
     this.margin = 1.0,
     this.activeStepBorderWidth = 0.5,
@@ -243,7 +243,15 @@ class _BaseStepperState extends State<BaseStepper> {
                       ]
                     ],
                   ),
-                  _customizedDottedLine(index, Axis.horizontal),
+                  Column(
+                    children: [
+                      widget.spacing ??
+                          SizedBox(
+                            height: (widget.stepRadius / 2) - 1,
+                          ),
+                      _customizedDottedLine(index, Axis.horizontal),
+                    ],
+                  ),
                 ],
               )
             : Column(
@@ -287,16 +295,12 @@ class _BaseStepperState extends State<BaseStepper> {
   /// A customized DottedLine.
   Widget _customizedDottedLine(int index, Axis axis) {
     return index < widget.children!.length - 1
-        ? Container(
-            color: Colors.red,
-            padding: widget.dottedLinePadding,
-            child: DottedLine(
-              length: widget.lineLength,
-              color: widget.lineColor ?? Colors.blue,
-              dotRadius: widget.lineDotRadius,
-              spacing: 5.0,
-              axis: axis,
-            ),
+        ? DottedLine(
+            length: widget.lineLength,
+            color: widget.lineColor ?? Colors.blue,
+            dotRadius: widget.lineDotRadius,
+            spacing: 5.0,
+            axis: axis,
           )
         : Container();
   }
