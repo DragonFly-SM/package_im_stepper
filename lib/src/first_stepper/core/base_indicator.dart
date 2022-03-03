@@ -57,7 +57,7 @@ class BaseIndicator extends StatelessWidget {
             : null,
         shape: BoxShape.circle,
       ),
-      child: InkWell(
+      child: GestureDetector(
         onTap: onPressed as void Function()?,
         child: Container(
           height: radius * 2,
